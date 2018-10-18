@@ -285,7 +285,9 @@ y_train_folds = []
 # Hint: Look up the numpy array_split function.                                #
 ################################################################################
 X_train_folds=np.split(X_train,num_folds,axis=0)
-Y_train_folds=np.split(y_train,num_folds,axis=0)
+#将X_train(5000,3072)分成5份，每份为1000*3072
+y_train_folds=np.split(y_train,num_folds,axis=0)
+#y_train_folds应该时5
 ################################################################################
 #                                 END OF YOUR CODE                             #
 ################################################################################
@@ -309,14 +311,15 @@ for k in k_choices:
     accuracies=[]
     for i in range(num_folds):
         X_train_cv=np.vstack(X_train_folds[0:i]+X_train_folds[i+1:])
-        Y_train_cv=np.vstack(Y_train_folds[0:i]+Y_train_folds[i+1:])
+        y_train_cv=np.hstack(y_train_folds[0:i]+y_train_folds[i+1:])
+        #y_train_cv是4000的列向量
         X_test_cv=X_train_folds[i]
-        Y_test_cv=Y_train_folds[i]
+        y_test_cv=y_train_folds[i]
         
-        classifier.train(X_train_cv, Y_train_cv)
+        classifier.train(X_train_cv, y_train_cv)
         dists = classifier.compute_distances_no_loops(X_test_cv)
         y_test_pred = classifier.predict_labels(dists, k)
-        num_correct = np.sum(Y_test_cv == y_test_pred)
+        num_correct = np.sum(y_test_cv == y_test_pred)
         accuracy = float(num_correct) / num_test
         accuracies.append(accuracy)
     k_to_accuracies[k]=accuracies

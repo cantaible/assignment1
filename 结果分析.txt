@@ -1,0 +1,77 @@
+The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+Training data shape:  (50000, 32, 32, 3)
+Training labels shape:  (50000,)
+Test data shape:  (10000, 32, 32, 3)
+Test labels shape:  (10000,)
+
+￼
+训练集的大小，测试集的大小
+(5000, 3072) (500, 3072)
+距离矩阵的大小
+(500, 5000)
+可视化距离矩阵
+
+￼
+当k=1时，有 137 / 500 个正确的数据 => accuracy: 0.274000
+当k=5时，有 139 / 500 个正确的数据 => accuracy: 0.278000
+Difference was: 0.000000
+Good! The distance matrices are the same
+Difference was: 0.000000
+Good! The distance matrices are the same
+Two loop version took 48.605712 seconds
+One loop version took 88.179184 seconds
+No loop version took 0.299814 seconds
+k = 1, accuracy = 0.526000
+k = 1, accuracy = 0.514000
+k = 1, accuracy = 0.528000
+k = 1, accuracy = 0.556000
+k = 1, accuracy = 0.532000
+k = 3, accuracy = 0.478000
+k = 3, accuracy = 0.498000
+k = 3, accuracy = 0.480000
+k = 3, accuracy = 0.532000
+k = 3, accuracy = 0.508000
+k = 5, accuracy = 0.496000
+k = 5, accuracy = 0.532000
+k = 5, accuracy = 0.560000
+k = 5, accuracy = 0.584000
+k = 5, accuracy = 0.560000
+k = 8, accuracy = 0.524000
+k = 8, accuracy = 0.564000
+k = 8, accuracy = 0.546000
+k = 8, accuracy = 0.580000
+k = 8, accuracy = 0.546000
+k = 10, accuracy = 0.530000
+k = 10, accuracy = 0.592000
+k = 10, accuracy = 0.552000
+k = 10, accuracy = 0.568000
+k = 10, accuracy = 0.560000
+k = 12, accuracy = 0.520000
+k = 12, accuracy = 0.590000
+k = 12, accuracy = 0.558000
+k = 12, accuracy = 0.566000
+k = 12, accuracy = 0.560000
+k = 15, accuracy = 0.504000
+k = 15, accuracy = 0.578000
+k = 15, accuracy = 0.556000
+k = 15, accuracy = 0.564000
+k = 15, accuracy = 0.548000
+k = 20, accuracy = 0.540000
+k = 20, accuracy = 0.558000
+k = 20, accuracy = 0.558000
+k = 20, accuracy = 0.564000
+k = 20, accuracy = 0.570000
+k = 50, accuracy = 0.542000
+k = 50, accuracy = 0.576000
+k = 50, accuracy = 0.556000
+k = 50, accuracy = 0.538000
+k = 50, accuracy = 0.532000
+k = 100, accuracy = 0.512000
+k = 100, accuracy = 0.540000
+k = 100, accuracy = 0.526000
+k = 100, accuracy = 0.512000
+k = 100, accuracy = 0.526000
+
+￼
+Got 137 / 500 correct => accuracy: 0.274000
