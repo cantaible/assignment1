@@ -1,1 +1,78 @@
-Details about this assignment can be found [on the course webpage](http://cs231n.github.io/), under Assignment #1 of Spring 2017.
+#用python实现两层的bp神经网络
+##检查模型
+先用`np.random.seed(0)`方法生成随机数，每次生成的随机数都一样，方便检查模型是否正确。
+生成一个输入数据维度为`4`，隐藏层大小为`10`，输出层大小为`3`的网络，训练样本数为`5`，检查正向传播是否正确。
+###正向传播得到的输出层矩阵（没有使用softmax时的原始矩阵）
+	Your scores:
+	[[-0.81233741 -1.27654624 -0.70335995]
+ 	[-0.17129677 -1.18803311 -0.47310444]
+ 	[-0.51590475 -1.01354314 -0.8504215 ]
+ 	[-0.15419291 -0.48629638 -0.52901952]
+ 	[-0.00618733 -0.12435261 -0.15226949]]
+
+编写的代码实现的正向传播
+
+	correct scores:
+	[[-0.81233741 -1.27654624 -0.70335995]
+	 [-0.17129677 -1.18803311 -0.47310444]
+	 [-0.51590475 -1.01354314 -0.8504215 ]
+	 [-0.15419291 -0.48629638 -0.52901952]
+	 [-0.00618733 -0.12435261 -0.15226949]]
+正确的结果
+
+	Difference between your scores and correct scores:
+	3.6802720496109664e-08
+
+检查损失函数是否正确
+
+	Difference between your loss and correct loss:
+	0.01896541960606335
+
+###求各个权重和偏置的相对误差
+利用误差反向传播推导出的公式（**解析方法**）计算各个权重，偏置的梯度，利用微分定义（**数值方法**）计算出计算各个权重，偏置的梯度，计算相对误差，检查梯度计算是否正确。
+
+	W1 max relative error: 3.561318e-09
+	b1 max relative error: 1.555470e-09
+	W2 max relative error: 3.440708e-09
+	b2 max relative error: 3.865091e-11
+	Final training loss:  0.01714364353292375
+
+###迭代次数和损失的关系曲线
+![](https://i.imgur.com/YCWDb3b.png)
+
+由该曲线可知，随着迭代次数的增加损失确实在减少，初步验证了模型的正确性。
+
+##训练模型
+###输出训练过程中的参数
+使用CIFAR10正式开始训练网络，每个图片尺寸`32*32*3`，分成`10`个类，训练集`49000`张图片，测试集`1000`张图片。
+
+	Train data shape:  (49000, 3072)
+	Train labels shape:  (49000,)
+	Validation data shape:  (1000, 3072)
+	Validation labels shape:  (1000,)
+	Test data shape:  (1000, 3072)
+	Test labels shape:  (1000,)
+输出训练集，测试集的尺寸
+
+	iteration 0 / 1000: loss 2.302762
+	iteration 100 / 1000: loss 2.302358
+	iteration 200 / 1000: loss 2.297404
+	iteration 300 / 1000: loss 2.258897
+	iteration 400 / 1000: loss 2.202975
+	iteration 500 / 1000: loss 2.116816
+	iteration 600 / 1000: loss 2.049789
+	iteration 700 / 1000: loss 1.985711
+	iteration 800 / 1000: loss 2.003726
+	iteration 900 / 1000: loss 1.948076
+每100次循环输出一次损失值
+
+	Validation accuracy:  0.287
+最后使用测试集，输出精度。
+###迭代次数-损失曲线，训练集——测试集精度曲线
+![](https://i.imgur.com/sCXmDpT.png)
+
+通过对训练集和测试集精度的计算，可以检查模型的过拟合程度。
+###可视化权重矩阵
+![](https://i.imgur.com/OinompF.png)
+
+输入`32*32*3=3072`维，隐藏层有`50`个神经元，所以输入层到隐藏层之间的权重矩阵的尺寸为`3072*50`，还原成图片之后，就可以用`50`张图片表示权重矩阵。

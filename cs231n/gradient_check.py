@@ -14,6 +14,9 @@ def eval_numerical_gradient(f, x, verbose=True, h=0.00001):
   grad = np.zeros_like(x)
   # iterate over all indexes in x
   it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+  #nditer是np自带的迭代器
+  #flags=['multi_index']表示对a进行多重索引
+  #op_flags=['readwrite']表示不仅可以对a进行read（读取），还可以write（写入）
   while not it.finished:
 
     # evaluate function at x+h
